@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Main from './MainComponents/Main/Main';
+import AddTasks from './Pages/AddTasks/AddTasks';
 
 
 const router = createBrowserRouter([
@@ -14,7 +15,8 @@ const router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       {
-        
+        path: '/addtasks',
+        element: <AddTasks></AddTasks>
       }
     ]
   },

@@ -2,9 +2,9 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
 
-    const links = <div>
+    const links = <div className="ml-2">
        <NavLink to='/'>Home</NavLink>
-       <NavLink>Add Task</NavLink>
+       <NavLink to='/addtasks'>Add Task</NavLink>
        {/* <NavLink>Edit Task</NavLink>
        <NavLink>Delete Task</NavLink>
        <NavLink>Remove Task</NavLink> */}
