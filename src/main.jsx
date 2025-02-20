@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import Main from './MainComponents/Main/Main';
 import AddTasks from './Pages/AddTasks/AddTasks';
+import Login from './Pages/Auth/Login';
+import AuthProvider from './AuthProvider/AuthProvider';
 
 
 const router = createBrowserRouter([
@@ -17,13 +19,19 @@ const router = createBrowserRouter([
       {
         path: '/addtasks',
         element: <AddTasks></AddTasks>
-      }
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
     ]
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
