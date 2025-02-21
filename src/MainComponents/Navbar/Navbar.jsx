@@ -4,10 +4,13 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext);
-    const links = <div className="ml-2">
+    const links = <div className="space-x-2">
        <NavLink to='/'>Home</NavLink>
        {
-        user && user.email && <NavLink to='/addtasks'>Add Task</NavLink>
+        user && user.email && <> 
+            <NavLink to='/addtasks'>Add Task</NavLink>
+            <NavLink to='/alltasks'>All Task</NavLink>
+        </>
        }
        {/* <NavLink>Edit Task</NavLink>
        <NavLink>Delete Task</NavLink>
