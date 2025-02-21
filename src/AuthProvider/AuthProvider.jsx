@@ -15,18 +15,13 @@ const AuthProvider = ({children}) => {
 
 
     const googleLogin = () =>{
-        const googleSignIn = signInWithPopup(auth, provider)
+       const googleSignIn = signInWithPopup(auth, provider)
         .then((res) => {
             setLoading(true);
-            setUser(res.user);
-            console.log(user);
-            const userInfo = {
-                id: user.uid,
-                email : user.email,
-                name : user.displayName,
-                photo: user.photoURL,
-            }
+            // setUser(res.user);
+            // console.log(user);
             toast.success('login successful!', { position: 'top-center' });
+            return res;
         })
 
         .catch(err => {
@@ -58,6 +53,7 @@ const AuthProvider = ({children}) => {
 
     const contextInfo = {
         user,
+        setUser,
         loading,
         googleLogin,
         updateUser,
