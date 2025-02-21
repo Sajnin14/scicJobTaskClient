@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, updateProfile } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { toast } from "react-toastify";
 
@@ -44,6 +44,9 @@ const AuthProvider = ({children}) => {
     }
 
     
+   const logOut = () =>{
+    return signOut(auth);
+   }
 
     useEffect(() => {
         const userObserver = onAuthStateChanged(auth, (currentUser) => {
@@ -58,6 +61,7 @@ const AuthProvider = ({children}) => {
         loading,
         googleLogin,
         updateUser,
+        logOut,
     }
 
     return (

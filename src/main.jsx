@@ -9,6 +9,7 @@ import Main from './MainComponents/Main/Main';
 import AddTasks from './Pages/AddTasks/AddTasks';
 import Login from './Pages/Auth/Login';
 import AuthProvider from './AuthProvider/AuthProvider';
+import PrivateRoute from './Pages/Auth/PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/addtasks',
-        element: <AddTasks></AddTasks>
+        element: <PrivateRoute><AddTasks></AddTasks></PrivateRoute>
       },
       {
         path: '/login',
