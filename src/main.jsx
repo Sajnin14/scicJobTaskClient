@@ -1,6 +1,6 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -14,7 +14,12 @@ import PrivateRoute from './Pages/Auth/PrivateRoute';
 import AllTasks from './Pages/AllTasks/AllTasks';
 import EditTasks from './Pages/EditTasks/EditTasks';
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
+const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: '/editTasks/:id',
         element: <PrivateRoute><EditTasks></EditTasks> </PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/GET/tasks/${params.id}`),
+        loader: ({ params }) => fetch(`http://localhost:5000/GET/tasks/${params.id}`),
       },
       {
         path: '/login',
@@ -48,7 +53,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </AuthProvider>
   </StrictMode>,
 )

@@ -1,25 +1,59 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AllTasks = () => {
-    const [tasks, setTasks] = useState([]);
+    const { data: tasksData = [], refetch } = useQuery({
+        queryKey: ['tasksData'],
+        queryFn: async () => {
+            const res = await axios.get('http://localhost:5000/GET/tasks')
+            return (res.data);
+        }
+    })
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/GET/tasks')
-            .then(res => {
-                setTasks(res.data);
-                // console.log(tasks);
-            })
-    }, [tasks])
+    const handleDelete = (id) => {
+        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/DELETE/tasks/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        refetch();
+                    })
+
+            }
+        });
+    }
+
+    // useEffect(() => {
+    //     axios.get('http://localhost:5000/GET/tasks')
+    //         .then(res => {
+    //             setTasks(res.data);
+    //             // console.log(tasks);
+    //         })
+    // }, [tasks])
 
     return (
         <div className="w-11/12 mx-auto text-center my-20">
-            <h3 className="text-3xl font-bold">Total Tasks = {tasks.length}</h3>
+            <h3 className="text-3xl font-bold">Total Tasks = {tasksData.length}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
-                    tasks.map((task, idx) => <div key={idx} className="card bg-base-100 shadow-xl">
+                    tasksData.map((task, idx) => <div key={idx} className="card bg-base-100 shadow-xl">
                         <figure className="px-10 pt-10">
                             <img
                                 src={task.photo}
@@ -32,7 +66,7 @@ const AllTasks = () => {
                             <p>Creation time: {task.createdAt}</p>
                             <div className="card-actions">
                                 <Link to={`/editTasks/${task._id}`}><button className="btn bg-red-50"> <FaEdit className="text-xl"></FaEdit> Edit</button></Link>
-                                <button className="btn bg-red-500">Delete</button>
+                                <button onClick={() => handleDelete(`${task._id}`)} className="btn bg-red-500">Delete</button>
                             </div>
                         </div>
                     </div>)
