@@ -12,6 +12,7 @@ import Login from './Pages/Auth/Login';
 import AuthProvider from './AuthProvider/AuthProvider';
 import PrivateRoute from './Pages/Auth/PrivateRoute';
 import AllTasks from './Pages/AllTasks/AllTasks';
+import EditTasks from './Pages/EditTasks/EditTasks';
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
       {
         path: '/alltasks',
         element: <PrivateRoute><AllTasks></AllTasks></PrivateRoute>
+      },
+      {
+        path: '/editTasks/:id',
+        element: <PrivateRoute><EditTasks></EditTasks> </PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/GET/tasks/${params.id}`),
       },
       {
         path: '/login',

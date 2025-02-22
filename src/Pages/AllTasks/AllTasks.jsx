@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const AllTasks = () => {
     const [tasks, setTasks] = useState([]);
@@ -9,7 +10,7 @@ const AllTasks = () => {
         axios.get('http://localhost:5000/GET/tasks')
             .then(res => {
                 setTasks(res.data);
-                console.log(tasks);
+                // console.log(tasks);
             })
     }, [tasks])
 
@@ -30,7 +31,7 @@ const AllTasks = () => {
                             <p>Category: {task.category}</p>
                             <p>Creation time: {task.createdAt}</p>
                             <div className="card-actions">
-                                <button className="btn bg-red-50"> <FaEdit className="text-xl"></FaEdit> Edit</button>
+                                <Link to={`/editTasks/${task._id}`}><button className="btn bg-red-50"> <FaEdit className="text-xl"></FaEdit> Edit</button></Link>
                                 <button className="btn bg-red-500">Delete</button>
                             </div>
                         </div>
