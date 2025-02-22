@@ -10,6 +10,7 @@ const Navbar = () => {
         user && user.email && <> 
             <NavLink to='/addtasks'>Add Task</NavLink>
             <NavLink to='/alltasks'>All Task</NavLink>
+            <NavLink to='/category'>Category</NavLink>
         </>
        }
        {/* <NavLink>Edit Task</NavLink>

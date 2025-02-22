@@ -18,6 +18,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import Category from './Pages/Category/Category';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         path: '/login',
         element: <Login></Login>
       },
+      {
+        path: '/category',
+        element: <Category></Category>
+      }
     ]
   },
 ]);
