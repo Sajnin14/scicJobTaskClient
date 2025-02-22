@@ -29,9 +29,9 @@ const AddTasks = () => {
             createdAt: new Date().toISOString(),
         }
 
-        axios.post('http://localhost:5000/POST/tasks', taskInfo)
-        .then(res => {
-            console.log(res.data);
+        axios.post('https://job-task-server-beige.vercel.app/POST/tasks', taskInfo)
+        .then(() => {
+            
             Swal.fire({
                 title: "Task Adding done!",
                 icon: "success",

@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 
 const EditTasks = () => {
     const loader = useLoaderData();
-    console.log(loader);
     const handleEdit = e => {
         e.preventDefault();
         const form = e.target;
@@ -26,9 +25,8 @@ const EditTasks = () => {
             confirmButtonText: "Yes, update it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.patch(`http://localhost:5000/PUT/tasks/${loader._id}`, updateInfo)
-                    .then(res => {
-                        console.log(res.data);
+                axios.patch(`https://job-task-server-beige.vercel.app/PUT/tasks/${loader._id}`, updateInfo)
+                    .then(() => {
                         Swal.fire({
                             title: "Updated!",
                             text: "Your task has benn updated.",
@@ -37,8 +35,7 @@ const EditTasks = () => {
                     })
             }
         });
-        console.log(updateInfo);
-        // http://localhost:5000/PUT/tasks/:id
+        // https://job-task-server-beige.vercel.app/PUT/tasks/:id
 
     }
     return (

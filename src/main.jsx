@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       {
         path: '/editTasks/:id',
         element: <PrivateRoute><EditTasks></EditTasks> </PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/GET/tasks/${params.id}`),
+        loader: ({ params }) => fetch(`https://job-task-server-beige.vercel.app/GET/tasks/${params.id}`),
       },
       {
         path: '/login',

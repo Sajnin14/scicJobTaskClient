@@ -1,8 +1,10 @@
-# React + Vite
+Website name: TaskHub
+clientside link: https://job-task-9a6f1.web.app
+description: authentic user can add, remove, and edit tasks.
+             for future work I will work with drag and drop method. Category wise data moving with drag and drop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+installation process: 
+    1. Clone the Repository
+    2. Install Dependencies
+    3. Set Up Environment Variables 
+    4. Start the Development Server 

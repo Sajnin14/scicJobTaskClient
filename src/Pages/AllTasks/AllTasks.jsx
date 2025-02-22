@@ -8,13 +8,12 @@ const AllTasks = () => {
     const { data: tasksData = [], refetch } = useQuery({
         queryKey: ['tasksData'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/GET/tasks')
+            const res = await axios.get('https://job-task-server-beige.vercel.app/GET/tasks')
             return (res.data);
         }
     })
 
     const handleDelete = (id) => {
-        console.log(id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -25,9 +24,8 @@ const AllTasks = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/DELETE/tasks/${id}`)
-                    .then(res => {
-                        console.log(res.data);
+                axios.delete(`https://job-task-server-beige.vercel.app/DELETE/tasks/${id}`)
+                    .then(() => {
                         Swal.fire({
                             title: "Deleted!",
                             text: "Your file has been deleted.",
@@ -41,7 +39,7 @@ const AllTasks = () => {
     }
 
     // useEffect(() => {
-    //     axios.get('http://localhost:5000/GET/tasks')
+    //     axios.get('https://job-task-server-beige.vercel.app/GET/tasks')
     //         .then(res => {
     //             setTasks(res.data);
     //             // console.log(tasks);

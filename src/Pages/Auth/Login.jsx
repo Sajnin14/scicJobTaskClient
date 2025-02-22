@@ -19,7 +19,7 @@ const Login = () => {
             photo: user.photoURL,
         }
           console.log(userInfo);
-        const res2 = await axios.post('http://localhost:5000/users', userInfo)
+        const res2 = await axios.post('https://job-task-server-beige.vercel.app/users', userInfo)
          console.log(res2.data);
             navigate('/addTasks');
 
@@ -31,7 +31,7 @@ const Login = () => {
         //         photo: user.photoURL,
         //     }
 
-        //     axios.post('http://localhost:5000/users', userInfo)
+        //     axios.post('https://job-task-server-beige.vercel.app/users', userInfo)
         //         .then(res => {
         //             console.log(res.data);
         //         })
